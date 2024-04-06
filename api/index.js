@@ -12,7 +12,6 @@ import artistRouter from './routes/artist.route.js'
 
 import cors from 'cors'
 
-import path from 'path'
 
 dotenv.config()
 
@@ -32,11 +31,7 @@ app.use('/api/artworks', artWorksRouter)
 
 app.use('/api/artist', artistRouter)
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500
