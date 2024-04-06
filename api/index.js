@@ -10,7 +10,6 @@ import authRouter from './routes/auth.route.js'
 import artWorksRouter from './routes/artworks.route.js'
 import artistRouter from './routes/artist.route.js'
 
-import path from "path";
 
 import cors from 'cors'
 
@@ -22,7 +21,6 @@ mongoose.connect(process.env.Mongo_URL).then(() => {console.log('Connected to th
 const app = express()
 
 app.use(cors());
-const __dirname = path.resolve();
 
 app.use(express.json())
 
@@ -33,11 +31,6 @@ app.use('/api/artworks', artWorksRouter)
 
 app.use('/api/artist', artistRouter)
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500
