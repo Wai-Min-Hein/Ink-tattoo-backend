@@ -10,6 +10,8 @@ import authRouter from './routes/auth.route.js'
 import artWorksRouter from './routes/artworks.route.js'
 import artistRouter from './routes/artist.route.js'
 
+import path from "path";
+
 import cors from 'cors'
 
 
