@@ -20,7 +20,6 @@ mongoose.connect(process.env.Mongo_URL).then(() => {console.log('Connected to th
 const app = express()
 
 app.use(cors());
-const __dirname = path.resolve();
 
 app.use(express.json())
 
