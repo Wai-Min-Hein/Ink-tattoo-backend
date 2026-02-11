@@ -16,8 +16,10 @@ import cors from "cors";
 
 dotenv.config();
 
+const mongoUri = process.env.MONGO_URL || process.env.Mongo_URI || process.env.Mongo_URL;
+
 mongoose
-  .connect(process.env.Mongo_URL)
+  .connect(mongoUri)
   .then(() => {
     console.log("Connected to the database");
   })
@@ -48,6 +50,13 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(process.env.Port, () => {
-  console.log(`Server is listening at port ${process.env.Port}`);
-});
+const port = process.env.PORT || process.env.Port || 3000;
+
+// Only start a local listener during development; Vercel invokes the handler directly.
+if (!process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`Server is listening at port ${port}`);
+  });
+}
+
+export default app;
